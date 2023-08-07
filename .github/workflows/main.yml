@@ -13,6 +13,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Set up AWS Credentials
+        run: |
+          echo "AWS_ACCESS_KEY_ID=<Your_AWS_Access_Key_ID>" >> $GITHUB_ENV
+          echo "AWS_SECRET_ACCESS_KEY=<Your_AWS_Secret_Access_Key>" >> $GITHUB_ENV
+          echo "AWS_DEFAULT_REGION=<Your_AWS_Region>" >> $GITHUB_ENV
+
       - name: Set up Terraform
         uses: hashicorp/setup-terraform@v1
         with:
@@ -28,4 +34,3 @@ jobs:
         run: terraform apply -auto-approve 
 
       # Add more steps for testing, validation, and other pipeline tasks as needed.
-
